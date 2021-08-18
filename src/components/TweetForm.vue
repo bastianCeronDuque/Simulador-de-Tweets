@@ -3,10 +3,10 @@
 <!-- {OPEN: SHOWFORM} QUIERE DECIR QUE CUANDO SHOWFORM SEA TRUE VAS A AÑADIRLE LA CLASE OPEN A ESTE DIV// NO IMPORTA SI TIENES UNA CLASE ESTATICA PORQUE ESTA VA A SER DINAMICA -->
   <div class="tweet-form container" :class="{open:showForm}">
 
-      <form>
-          <input class="form-control" placeholder="Tu Nombre">
-          <textarea class="form-control" rows="3" placeholder="Escribe tu tweet"></textarea>
-          <button type="button" class="btn btn-primary">
+      <form @submit.prevent="sendTweet">
+          <input class="form-control" placeholder="Tu Nombre" v-model="username">
+          <textarea class="form-control" rows="3" placeholder="Escribe tu tweet" v-model="tweet"></textarea>
+          <button type="submit" class="btn btn-primary">
               Enviar Tweet
           </button>
       </form>
@@ -14,10 +14,24 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { saveTweetApi } from "../api/tweet";
 export default {
     props: {
         showForm: Boolean,
         // TENEMOS QUE RECUPERAR ESE PROP QUE NOS LLEGA PARA ELLO LO PONEMOS EN LA SECCION DE EXPORT DEFAULT Y  OBTENEMOS ESE SHOWFORM
+    },
+    setup(){
+        let username = ref('')
+        let tweet = ref('')
+        const sendTweet = () => {
+           saveTweetApi(tweet.value, username.value)
+
+
+        }
+        return{
+            sendTweet, username, tweet
+        }
     }
 }
 </script>
