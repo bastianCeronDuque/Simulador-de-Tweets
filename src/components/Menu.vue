@@ -1,14 +1,15 @@
 <template>
   <nav class="navbar navbar-dark bg-dark">
-      <div class="container">
-        <span class="navbar-brand">Simulador de Tweets</span>
-        <button 
+    <div class="container">
+      <span class="navbar-brand">Simulador de Tweets Ignacio</span>
+      <button
         class="btn pl-4 pr-4"
-         :class="{ 'btn-success': !showForm, 'btn-danger': showForm }"
-         @click="openCloseForm">
-          {{!showForm ? 'Nuevo Tweet' : 'Cerrar Tweet'}}
-        </button>
-      </div>
+        :class="{ 'btn-success': !showForm, 'btn-danger': showForm }"
+        @click="openCloseForm"
+      >
+        {{ !showForm ? "Nuevo Tweet" : "Cerrar Tweet" }}
+      </button>
+    </div>
   </nav>
 </template>
 
@@ -17,10 +18,9 @@ export default {
   props: {
     showForm: Boolean,
     openCloseForm: Function,
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>
